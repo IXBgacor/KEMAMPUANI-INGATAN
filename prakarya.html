@@ -5,21 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Test Ingatan by Dika and team</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+        
         * {margin:0;padding:0;box-sizing:border-box;}
 
+        /* --- 1. DARKER & BETTER BACKGROUND --- */
         body{
             font-family:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
-            background:linear-gradient(-45deg,#ee7752,#e73c7e,#23a6d5,#23d5ab);
-            background-size:400% 400%;animation:gradientBG 15s ease infinite;
+            /* Gradien Lebih Gelap dan Elegan */
+            background:linear-gradient(225deg,#1c1e28,#12141d,#0c0e15); 
+            background-size:400% 400;
             color:#fff;min-height:100vh;overflow-x:hidden;position:relative;padding:10px;
             display:flex;flex-direction:column;
         }
-        @keyframes gradientBG{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+
+        /* Latar Belakang Terbang (Optional) */
         body::before{
             content:'';position:fixed;top:0;left:0;width:100%;height:100%;
-            background:radial-gradient(circle at 20% 80%,rgba(120,119,198,.3)0%,transparent 50%),
-                       radial-gradient(circle at 80% 20%,rgba(255,119,198,.3)0%,transparent 50%);
+            background:radial-gradient(circle at 10% 90%,rgba(130,130,255,.1)0%,transparent 50%),
+                       radial-gradient(circle at 90% 10%,rgba(255,100,100,.1)0%,transparent 50%);
             pointer-events:none;z-index:-1;
+        }
+
+        /* --- 2. FLOATING EMOJIS --- */
+        .floating-emoji {
+            position: absolute;
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            opacity: 0.2; /* Lebih transparan */
+            pointer-events: none;
+            animation: floatAnimation linear infinite;
+            z-index: 0;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+        }
+
+        /* Atur posisi dan kecepatan untuk beberapa emoji */
+        .emoji-1 { top: 5%; left: 10%; animation-duration: 18s; animation-delay: 0s; }
+        .emoji-2 { top: 20%; right: 5%; animation-duration: 22s; animation-delay: 3s; }
+        .emoji-3 { bottom: 15%; left: 25%; animation-duration: 25s; animation-delay: 6s; }
+        .emoji-4 { bottom: 5%; right: 30%; animation-duration: 15s; animation-delay: 9s; }
+        .emoji-5 { top: 50%; left: 5%; animation-duration: 20s; animation-delay: 12s; }
+        .emoji-6 { top: 75%; right: 15%; animation-duration: 28s; animation-delay: 15s; }
+
+        @keyframes floatAnimation {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(20vw, 15vh) rotate(5deg); }
+            66% { transform: translate(-10vw, -10vh) rotate(-5deg); }
+            100% { transform: translate(0, 0) rotate(0deg); }
         }
 
         .container{
@@ -28,88 +59,94 @@
             flex:1;
         }
 
+        /* --- 3. PANEL (Glassmorphism Gelap) --- */
         .panel{
-            background:rgba(255,255,255,.15);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
-            border-radius:25px;padding:25px 20px;box-shadow:0 25px 45px rgba(0,0,0,.1);
-            border:1px solid rgba(255,255,255,.2);transition:all .5s cubic-bezier(.4,0,.2,1);
-            position:relative;overflow:hidden;width:100%;max-width:420px;margin:10px 0;
+            background:rgba(255,255,255,.05); /* Sedikit lebih gelap */
+            backdrop-filter:blur(25px);-webkit-backdrop-filter:blur(25px); /* Blur lebih kuat */
+            border-radius:25px;padding:30px 25px; /* Padding sedikit lebih besar */
+            box-shadow:0 30px 60px rgba(0,0,0,.3); /* Shadow lebih kuat */
+            border:1px solid rgba(255,255,255,.1); /* Border lebih halus */
+            transition:all .5s cubic-bezier(.4,0,.2,1);
+            position:relative;overflow:hidden;width:100%;max-width:450px;margin:15px 0; /* Max-width dan margin disesuaikan */
             flex-shrink:0;
         }
         .panel h1{
-            font-size:clamp(1.8rem,6vw,2.8rem);margin-bottom:20px;
-            background:linear-gradient(45deg,#fff,#f0f0f0);-webkit-background-clip:text;
+            font-size:clamp(2rem,7vw,3.2rem);margin-bottom:25px; /* Font lebih besar */
+            background:linear-gradient(45deg,#aaffd0,#f0f0f0);-webkit-background-clip:text;
             -webkit-text-fill-color:transparent;background-clip:text;
-            text-shadow:0 0 30px rgba(255,255,255,.5);animation:glow 2s ease-in-out infinite alternate;
-            line-height:1.2;display:flex;align-items:center;gap:12px;
+            text-shadow:0 0 35px rgba(255,255,255,.6);animation:glow 2s ease-in-out infinite alternate;
+            line-height:1.2;display:flex;align-items:center;gap:15px; /* Jarak ikon lebih besar */
         }
         .panel h1::before{
-            content:"🧠";font-size:1.6em;
+            content:"­ЪДа";font-size:1.6em;
         }
-        @keyframes glow{from{filter:drop-shadow(0 0 10px rgba(255,255,255,.5))}to{filter:drop-shadow(0 0 20px rgba(255,255,255,.8))}}
+        @keyframes glow{from{filter:drop-shadow(0 0 12px rgba(170,255,208,.6))}to{filter:drop-shadow(0 0 25px rgba(170,255,208,.9))}}
 
         .btn{
-            background:linear-gradient(145deg,rgba(255,255,255,.2),rgba(255,255,255,.1));
-            backdrop-filter:blur(10px);border:2px solid rgba(255,255,255,.3);border-radius:15px;
-            padding:18px 25px;font-size:clamp(1rem,4vw,1.2rem);font-weight:600;color:#fff;cursor:pointer;
-            transition:all .4s cubic-bezier(.25,.46,.45,.94);margin:12px 0;width:100%;position:relative;
-            overflow:hidden;text-transform:uppercase;letter-spacing:1px;min-height:60px;
+            background:linear-gradient(145deg,rgba(255,255,255,.15),rgba(255,255,255,.05)); /* Tombol Glassmorphism */
+            backdrop-filter:blur(15px);border:2px solid rgba(255,255,255,.2);border-radius:15px;
+            padding:20px 30px;font-size:clamp(1.1rem,4.5vw,1.3rem);font-weight:700;color:#fff;cursor:pointer;
+            transition:all .4s cubic-bezier(.25,.46,.45,.94);margin:15px 0;width:100%;position:relative;
+            overflow:hidden;text-transform:uppercase;letter-spacing:1px;min-height:65px;
             display:flex;align-items:center;justify-content:center;gap:12px;
         }
         .btn::before{
             content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;
-            background:linear-gradient(90deg,transparent,rgba(255,255,255,.4),transparent);
+            background:linear-gradient(90deg,transparent,rgba(255,255,255,.3),transparent);
             transition:left .6s;
         }
-        .btn:hover,.btn:active{transform:translateY(-5px) scale(1.02);box-shadow:0 20px 40px rgba(0,0,0,.3);border-color:rgba(255,255,255,.6);}
+        .btn:hover,.btn:active{transform:translateY(-5px) scale(1.02);box-shadow:0 25px 50px rgba(0,0,0,.4);border-color:rgba(255,255,255,.4);}
         .btn:hover::before{left:100%;}
-        .btn-primary{background:linear-gradient(45deg,#ff6b6b,#feca57);}
-        .btn-success{background:linear-gradient(45deg,#48dbfb,#0abde3);}
-        .btn-warning{background:linear-gradient(45deg,#f093fb,#f5576c);}
-        .btn-secondary{background:transparent;border-color:rgba(255,255,255,.5);color:rgba(255,255,255,.9);}
+        /* Mengganti warna gradien tombol agar cocok dengan tema gelap */
+        .btn-primary{background:linear-gradient(45deg,#00b894,#00cec9);} /* Hijau Tosca */
+        .btn-success{background:linear-gradient(45deg,#74b9ff,#0984e3);} /* Biru */
+        .btn-warning{background:linear-gradient(45deg,#ffeaa7,#fdcb6e);} /* Kuning */
+        .btn-secondary{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.8);}
 
         /* ICON ADMIN & PLAYER */
-        #adminBtn::before {content:"🕊";font-size:1.4em;}
-        #playerBtn::before {content:"🌷";font-size:1.4em;}
+        #adminBtn::before {content:"­ЪЉЉ";font-size:1.4em;} /* Mahkota */
+        #playerBtn::before {content:"­Ъј«";font-size:1.4em;} /* Joystick */
 
-        .input-group{margin:20px 0;width:100%;}
+        .input-group{margin:25px 0;width:100%;}
         input[type=text],input[type=password]{
-            width:100%;padding:20px;font-size:clamp(1rem,4vw,1.1rem);
-            border:2px solid rgba(255,255,255,.3);border-radius:15px;
-            background:rgba(255,255,255,.1);backdrop-filter:blur(10px);color:#fff;
-            transition:all .3s ease;font-family:inherit;min-height:60px;
+            width:100%;padding:20px;font-size:clamp(1.1rem,4vw,1.2rem);
+            border:2px solid rgba(255,255,255,.15);border-radius:15px;
+            background:rgba(255,255,255,.05);backdrop-filter:blur(10px);color:#fff;
+            transition:all .3s ease;font-family:inherit;min-height:65px;
+            box-shadow:inset 0 0 10px rgba(0,0,0,.3);
         }
-        input[type=text]::placeholder,input[type=password]::placeholder{color:rgba(255,255,255,.7);}
-        input:focus{outline:none;border-color:#fff;box-shadow:0 0 20px rgba(255,255,255,.3);transform:scale(1.01);}
+        input[type=text]::placeholder,input[type=password]::placeholder{color:rgba(255,255,255,.6);}
+        input:focus{outline:none;border-color:rgba(255,255,255,.5);box-shadow:0 0 25px rgba(255,255,255,.2);transform:scale(1.01);}
 
         /* ADMIN LEADERBOARD */
         #adminLeaderboard{list-style:none;max-height:60vh;overflow-y:auto;margin:20px 0;padding:15px;
-            background:rgba(255,255,255,.05);border-radius:15px;backdrop-filter:blur(10px);
+            background:rgba(255,255,255,.03);border-radius:15px;backdrop-filter:blur(10px);
             font-size:clamp(.95rem,3.8vw,1.05rem);}
-        #adminLeaderboard li{padding:16px 18px;margin:10px 0;background:rgba(255,255,255,.15);
+        #adminLeaderboard li{padding:18px 20px;margin:12px 0;background:rgba(255,255,255,.08);
             border-radius:15px;transition:all .3s ease;display:flex;justify-content:space-between;
-            align-items:center;font-weight:600;position:relative;overflow:hidden;min-height:68px;
+            align-items:center;font-weight:600;position:relative;overflow:hidden;min-height:70px;
             border:2px solid transparent;word-break:break-word;}
         #adminLeaderboard li::before{
-            content:attr(data-rank);font-size:clamp(1.3rem,5.5vw,1.6rem);font-weight:900;margin-right:15px;
-            background:linear-gradient(45deg,#ffd700,#ffed4e);-webkit-background-clip:text;
-            -webkit-text-fill-color:transparent;min-width:38px;text-align:center;
+            content:attr(data-rank);font-size:clamp(1.5rem,6vw,1.8rem);font-weight:900;margin-right:15px;
+            background:linear-gradient(45deg,#ffed4e,#ffd700);-webkit-background-clip:text;
+            -webkit-text-fill-color:transparent;min-width:40px;text-align:center;
         }
         .player-entry{flex:1;display:flex;justify-content:space-between;align-items:center;width:100%;}
         .player-name{font-weight:700;color:#fff;max-width:55%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-        .player-score{font-size:clamp(1.1rem,4.5vw,1.3rem);font-weight:900;color:#ffd700;
-            background:rgba(255,215,0,.2);padding:6px 12px;border-radius:12px;min-width:70px;
-            text-align:center;box-shadow:0 0 15px rgba(255,215,0,.4);}
-        #adminLeaderboard li:nth-child(1){border:3px solid #ffd700;box-shadow:0 0 35px rgba(255,215,0,.7);transform:scale(1.03);background:rgba(255,215,0,.25);}
-        #adminLeaderboard li:nth-child(2){border:2px solid #c0c0c0;box-shadow:0 0 25px rgba(192,192,192,.6);}
-        #adminLeaderboard li:nth-child(3){border:2px solid #cd7f32;box-shadow:0 0 25px rgba(205,127,50,.6);}
+        .player-score{font-size:clamp(1.2rem,4.8vw,1.4rem);font-weight:900;color:#ffd700;
+            background:rgba(255,215,0,.15);padding:8px 15px;border-radius:12px;min-width:75px;
+            text-align:center;box-shadow:0 0 18px rgba(255,215,0,.3);}
+        #adminLeaderboard li:nth-child(1){border:3px solid #ffd700;box-shadow:0 0 40px rgba(255,215,0,.6);transform:scale(1.03);background:rgba(255,215,0,.2);}
+        #adminLeaderboard li:nth-child(2){border:2px solid #c0c0c0;box-shadow:0 0 30px rgba(192,192,192,.5);}
+        #adminLeaderboard li:nth-child(3){border:2px solid #cd7f32;box-shadow:0 0 30px rgba(205,127,50,.5);}
 
-        .online-info{font-size:clamp(1.1rem,4.5vw,1.3rem);margin-bottom:15px;text-align:center;opacity:.9;padding:10px;background:rgba(255,255,255,.1);border-radius:12px;}
+        .online-info{font-size:clamp(1.2rem,4.8vw,1.4rem);margin-bottom:18px;text-align:center;opacity:.9;padding:12px;background:rgba(255,255,255,.08);border-radius:15px;}
 
         /* TIMER */
-        .timer-container{margin:25px 0;text-align:center;width:100%;flex-shrink:0;}
-        #timer{width:100%;height:28px;background:rgba(255,255,255,.12);border-radius:50px;overflow:hidden;
-            box-shadow:inset 0 3px 12px rgba(0,0,0,.3);margin-bottom:15px;border:2px solid rgba(255,255,255,.2);}
-        #timerBar{height:100%;background:linear-gradient(90deg,#ff6b6b,#feca57,#48dbfb,#00ff88);width:100%;
+        .timer-container{margin:30px 0;text-align:center;width:100%;flex-shrink:0;}
+        #timer{width:100%;height:32px;background:rgba(255,255,255,.08);border-radius:50px;overflow:hidden;
+            box-shadow:inset 0 3px 15px rgba(0,0,0,.4);margin-bottom:18px;border:2px solid rgba(255,255,255,.15);}
+        #timerBar{height:100%;background:linear-gradient(90deg,#ff4757,#ff7f50,#2ed573,#00b894);width:100%;
             border-radius:50px;transition:width .15s linear;position:relative;overflow:hidden;}
         #timerBar::after{
             content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;
@@ -117,33 +154,33 @@
             animation:shimmer 1.8s infinite;
         }
         @keyframes shimmer{0%{left:-100%}100%{left:100%}}
-        #timerText{font-size:clamp(2rem,8vw,2.8rem);font-weight:900;text-shadow:0 0 25px currentColor;
-            margin-top:8px;letter-spacing:2px;animation:timerPulse 1.5s ease-in-out infinite;}
+        #timerText{font-size:clamp(2.2rem,9vw,3.2rem);font-weight:900;text-shadow:0 0 30px currentColor;
+            margin-top:10px;letter-spacing:3px;animation:timerPulse 1.5s ease-in-out infinite;}
         @keyframes timerPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
-        .low-time #timerBar{background:linear-gradient(90deg,#ff3b30,#ff9500);animation:flash 1s infinite alternate;}
-        @keyframes flash{from{opacity:1}to{opacity:.8}}
+        .low-time #timerBar{background:linear-gradient(90deg,#e84118,#f53b57);animation:flash 1s infinite alternate;}
+        @keyframes flash{from{opacity:1}to{opacity:.7}}
 
         /* GAME GRID - RESPONSIVE */
         #gameGrid{
             display:grid;
             grid-template-columns:repeat(4,1fr);
             grid-auto-rows:1fr;
-            gap:clamp(6px,1.5vw,12px);
+            gap:clamp(8px,2vw,15px); /* Gap lebih besar */
             width:100%;
             max-width:95vw;
-            margin:20px auto;
-            padding:clamp(8px,2vw,15px);
+            margin:25px auto;
+            padding:clamp(10px,2.5vw,20px);
             justify-items:center;
             align-items:center;
             aspect-ratio:1 / 1;
-            max-height:calc(100vh - 380px);
+            max-height:calc(100vh - 400px);
         }
 
         .card{
             width:100%;
             height:100%;
-            max-width:120px;
-            max-height:120px;
+            max-width:130px; /* Maksimum sedikit lebih besar */
+            max-height:130px;
             aspect-ratio:1;
             perspective:1000px;
             cursor:pointer;
@@ -156,139 +193,141 @@
         .card.matched .card-inner{transform:rotateY(180deg);}
         .card-front,.card-back{
             position:absolute;width:100%;height:100%;backface-visibility:hidden;
-            border-radius:18px;display:flex;align-items:center;justify-content:center;
-            box-shadow:0 12px 30px rgba(0,0,0,.3);border:2.5px solid rgba(255,255,255,.25);
+            border-radius:20px; /* Radius lebih besar */
+            display:flex;align-items:center;justify-content:center;
+            box-shadow:0 15px 40px rgba(0,0,0,.4); /* Shadow lebih kuat */
+            border:2.5px solid rgba(255,255,255,.15); /* Border lebih halus */
         }
         .card-back{
-            background:linear-gradient(145deg,rgba(255,255,255,.18),rgba(255,255,255,.08));
+            background:linear-gradient(145deg,rgba(255,255,255,.1),rgba(255,255,255,.05)); /* Lebih gelap */
             backdrop-filter:blur(15px);
         }
         .card-front{
-            background:#fff;color:#333;transform:rotateY(180deg);overflow:hidden;
+            background:#f5f6fa;color:#333;transform:rotateY(180deg);overflow:hidden; /* Warna background kartu putih keabu-abuan */
         }
         .card-front img{
-            width:85%;height:85%;object-fit:contain;border-radius:12px;
-            box-shadow:0 4px 15px rgba(0,0,0,.2);
+            width:85%;height:85%;object-fit:contain;border-radius:15px;
+            box-shadow:0 6px 20px rgba(0,0,0,.25);
         }
-        .card.matched{filter:drop-shadow(0 0 28px #00ff88);animation:matchGlow 1.2s ease-out;}
-        @keyframes matchGlow{0%{filter:drop-shadow(0 0 0px #00ff88)}50%{filter:drop-shadow(0 0 35px #00ff88)}100%{filter:drop-shadow(0 0 25px #00ff88)}}
+        .card.matched{filter:drop-shadow(0 0 30px #00b894);animation:matchGlow 1.2s ease-out;} /* Warna glow disesuaikan */
+        @keyframes matchGlow{0%{filter:drop-shadow(0 0 0px #00b894)}50%{filter:drop-shadow(0 0 40px #00b894)}100%{filter:drop-shadow(0 0 30px #00b894)}}
 
-        #score{font-size:clamp(1.8rem,6vw,2.8rem);font-weight:800;margin:20px 0;
-            text-shadow:0 0 30px currentColor;animation:scorePulse 2s ease-in-out infinite;text-align:center;flex-shrink:0;}
+        #score{font-size:clamp(2rem,7vw,3.2rem);font-weight:800;margin:25px 0;
+            text-shadow:0 0 35px currentColor;animation:scorePulse 2s ease-in-out infinite;text-align:center;flex-shrink:0;
+            color:#74b9ff; /* Warna skor biru cerah */
+        }
         @keyframes scorePulse{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
 
         /* RESULTS */
-        #leaderboard{list-style:none;margin:25px 0;padding:0;width:100%;flex-shrink:0;}
-        #leaderboard li{padding:18px 15px;margin:10px 0;background:rgba(255,255,255,.15);
-            border-radius:15px;font-size:clamp(1rem,4vw,1.2rem);font-weight:600;
+        #leaderboard{list-style:none;margin:30px 0;padding:0;width:100%;flex-shrink:0;}
+        #leaderboard li{padding:20px 18px;margin:12px 0;background:rgba(255,255,255,.08);
+            border-radius:15px;font-size:clamp(1.1rem,4.5vw,1.3rem);font-weight:600;
             display:flex;justify-content:space-between;align-items:center;transition:all .3s ease;
-            position:relative;overflow:hidden;min-height:65px;}
+            position:relative;overflow:hidden;min-height:70px;}
         #leaderboard li::before{
-            content:attr(data-rank);font-size:clamp(1.1rem,5vw,1.4rem);font-weight:900;margin-right:15px;
-            background:linear-gradient(45deg,#ffd700,#ffed4e);-webkit-background-clip:text;
-            -webkit-text-fill-color:transparent;min-width:30px;
+            content:attr(data-rank);font-size:clamp(1.4rem,5.5vw,1.7rem);font-weight:900;margin-right:18px;
+            background:linear-gradient(45deg,#ffed4e,#ffd700);-webkit-background-clip:text;
+            -webkit-text-fill-color:transparent;min-width:35px;
         }
         #leaderboard .player-entry{flex:1;display:flex;justify-content:space-between;align-items:center;}
         #leaderboard .player-name{font-weight:700;max-width:55%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-        #leaderboard .player-score{font-size:clamp(1.1rem,4.5vw,1.3rem);font-weight:900;color:#ffd700;
-            background:rgba(255,215,0,.2);padding:6px 12px;border-radius:12px;min-width:70px;
-            text-align:center;box-shadow:0 0 15px rgba(255,215,0,.4);}
-        #leaderboard li:nth-child(1){border:3px solid #ffd700;box-shadow:0 0 30px rgba(255,215,0,.5);transform:scale(1.02);}
-        #leaderboard li:nth-child(2){border:2px solid #c0c0c0;box-shadow:0 0 20px rgba(192,192,192,.5);}
-        #leaderboard li:nth-child(3){border:2px solid #cd7f32;box-shadow:0 0 20px rgba(205,127,50,.5);}
+        #leaderboard .player-score{font-size:clamp(1.2rem,4.8vw,1.4rem);font-weight:900;color:#ffd700;
+            background:rgba(255,215,0,.15);padding:8px 15px;border-radius:12px;min-width:75px;
+            text-align:center;box-shadow:0 0 18px rgba(255,215,0,.3);}
+        #leaderboard li:nth-child(1){border:3px solid #ffd700;box-shadow:0 0 35px rgba(255,215,0,.6);transform:scale(1.02);}
+        #leaderboard li:nth-child(2){border:2px solid #c0c0c0;box-shadow:0 0 25px rgba(192,192,192,.5);}
+        #leaderboard li:nth-child(3){border:2px solid #cd7f32;box-shadow:0 0 25px rgba(205,127,50,.5);}
 
-        #winner{font-size:clamp(1.6rem,6vw,2.2rem);font-weight:900;margin:25px 0;padding:20px 15px;
-            background:linear-gradient(45deg,#00ff88,#00cc6a);-webkit-background-clip:text;
-            -webkit-text-fill-color:transparent;background-clip:text;text-shadow:0 0 40px #00ff88;
+        #winner{font-size:clamp(1.8rem,6.5vw,2.5rem);font-weight:900;margin:30px 0;padding:25px 20px;
+            background:linear-gradient(45deg,#00b894,#00cec9);-webkit-background-clip:text; /* Warna WINNER disesuaikan */
+            -webkit-text-fill-color:transparent;background-clip:text;text-shadow:0 0 45px rgba(0,204,106,.8);
             animation:winnerBounce 1s ease infinite;text-align:center;line-height:1.3;flex-shrink:0;}
         @keyframes winnerBounce{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
 
-        .error{color:#ff6b6b;background:rgba(255,107,107,.2);padding:15px;border-radius:12px;
-            margin:15px 0;border-left:5px solid #ff6b6b;animation:shake .5s ease-in-out;
-            font-size:clamp(.9rem,4vw,1rem);text-align:center;}
-        @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+        .error{color:#ff4757;background:rgba(255,71,87,.2);padding:18px;border-radius:15px;
+            margin:18px 0;border-left:5px solid #ff4757;animation:shake .5s ease-in-out;
+            font-size:clamp(.95rem,4vw,1.1rem);text-align:center;}
+        @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-10px)}75%{transform:translateX(10px)}}
 
         .waiting-dots::after{content:'...';animation:dots 1.5s steps(4,end) infinite;}
         @keyframes dots{0%,20%{content:'.'}40%{content:'..'}60%,100%{content:'...'}}
 
-        #waitingMessage{font-size:clamp(1.2rem,5vw,1.5rem);margin-bottom:25px;text-align:center;line-height:1.4;}
-        #waitingPlayers{font-size:clamp(1rem,4vw,1.2rem);opacity:.8;text-align:center;margin-top:15px;}
+        #waitingMessage{font-size:clamp(1.3rem,5vw,1.6rem);margin-bottom:30px;text-align:center;line-height:1.4;}
+        #waitingPlayers{font-size:clamp(1.1rem,4.5vw,1.3rem);opacity:.8;text-align:center;margin-top:20px;}
 
         .waiting-status{
-            margin:20px 0;padding:15px;background:rgba(255,255,255,.1);border-radius:15px;
-            text-align:center;font-size:clamp(1rem,4vw,1.2rem);backdrop-filter:blur(8px);
-            border:1px solid rgba(255,255,255,.2);
+            margin:20px 0;padding:18px;background:rgba(255,255,255,.08);border-radius:15px;
+            text-align:center;font-size:clamp(1.1rem,4.5vw,1.3rem);backdrop-filter:blur(8px);
+            border:1px solid rgba(255,255,255,.15);
         }
         .waiting-status.ready{
-            background:linear-gradient(45deg,rgba(0,255,136,.2),rgba(0,204,106,.2));
-            border-color:#00ff88;color:#00ff88;
+            background:linear-gradient(45deg,rgba(0,184,148,.2),rgba(0,206,201,.2));
+            border-color:#00cec9;color:#00cec9;
         }
 
         .team-credits{
-            position:fixed;bottom:10px;left:10px;font-size:clamp(.7rem,2.5vw,.85rem);
-            background:rgba(255,255,255,.1);backdrop-filter:blur(10px);padding:8px 12px;
-            border-radius:12px;border:1px solid rgba(255,255,255,.2);opacity:.8;
+            position:fixed;bottom:10px;left:10px;font-size:clamp(.8rem,2.8vw,1rem);
+            background:rgba(255,255,255,.05);backdrop-filter:blur(10px);padding:10px 15px;
+            border-radius:15px;border:1px solid rgba(255,255,255,.1);opacity:.7;
             z-index:1000;line-height:1.4;
         }
-        .team-credits strong{color:#ffd700;}
+        .team-credits strong{color:#fdcb6e;}
 
         /* RESPONSIVE PORTRAIT & LANDSCAPE */
         @media (orientation: portrait) {
             #gameGrid {
-                max-height:calc(100vh - 380px);
+                max-height:calc(100vh - 400px);
             }
-            .panel { max-width: 90vw; }
+            .panel { max-width: 95vw; }
         }
 
         @media (orientation: landscape) and (max-height: 600px) {
             .container { padding: 8px; }
-            .panel { padding: 15px 18px; margin: 6px 0; }
+            .panel { padding: 18px 20px; margin: 8px 0; max-width: 420px; }
             #gameGrid {
                 max-height:calc(100vh - 300px);
-                gap: clamp(4px, 1vw, 8px);
-                padding: clamp(6px, 1.5vw, 10px);
+                gap: clamp(4px, 1vw, 10px);
+                padding: clamp(6px, 1.5vw, 12px);
             }
-            .card { max-width: 90px; max-height: 90px; }
-            #score, #timerText { font-size: clamp(1.6rem, 6vw, 2.2rem); }
-            .btn { padding: 14px 20px; min-height: 50px; font-size: clamp(0.9rem, 3.5vw, 1.1rem); }
-            .team-credits { bottom: 6px; left: 6px; padding: 6px 10px; font-size: .75rem; }
+            .card { max-width: 100px; max-height: 100px; }
+            #score, #timerText { font-size: clamp(1.8rem, 6.5vw, 2.5rem); }
+            .btn { padding: 16px 22px; min-height: 55px; font-size: clamp(1rem, 4vw, 1.2rem); }
+            .team-credits { bottom: 6px; left: 6px; padding: 6px 10px; font-size: .8rem; }
         }
 
         @media (max-width: 480px) {
             body { padding: 5px; }
-            .panel { padding: 18px 15px; margin: 6px 0; }
-            .btn { padding: 14px 18px; min-height: 52px; gap: 8px; }
+            .panel { padding: 20px 18px; margin: 8px 0; }
+            .btn { padding: 16px 20px; min-height: 58px; gap: 10px; }
             .player-name { max-width: 48%; }
-            .team-credits { bottom: 5px; left: 5px; padding: 5px 8px; font-size: .7rem; }
-            #adminBtn::before, #playerBtn::before { font-size: 1.2em; }
+            .team-credits { bottom: 5px; left: 5px; padding: 6px 8px; font-size: .75rem; }
+            #adminBtn::before, #playerBtn::before { font-size: 1.3em; }
         }
 
         .hidden{display:none !important;}
 
-        ::-webkit-scrollbar{width:6px;}
-        ::-webkit-scrollbar-track{background:rgba(255,255,255,.1);border-radius:10px;}
-        ::-webkit-scrollbar-thumb{background:rgba(255,255,255,.3);border-radius:10px;}
-        ::-webkit-scrollbar-thumb:hover{background:rgba(255,255,255,.5);}
+        /* SCROLLBAR GELAP */
+        ::-webkit-scrollbar{width:8px;}
+        ::-webkit-scrollbar-track{background:rgba(255,255,255,.05);border-radius:10px;}
+        ::-webkit-scrollbar-thumb{background:rgba(255,255,255,.2);border-radius:10px;}
+        ::-webkit-scrollbar-thumb:hover{background:rgba(255,255,255,.4);}
     </style>
 </head>
 <body>
-    <!-- NAMA TIM DI POJOK -->
-    <div class="team-credits">
-        <strong>Team:</strong> Dika • Arya • Joan • Akrom • Susan
+    <div class="floating-emoji emoji-1">­ЪїХ</div> <div class="floating-emoji emoji-2">­ЪљЪ</div> <div class="floating-emoji emoji-3">­Ъї┐</div> <div class="floating-emoji emoji-4">­ЪЇц</div> <div class="floating-emoji emoji-5">­Ъї░</div> <div class="floating-emoji emoji-6">­Ъља</div> <div class="team-credits">
+        <strong>Team:</strong> Dika Рђб Arya Рђб Joan Рђб Akrom Рђб Susan
     </div>
 
     <div class="container">
-        <!-- HOME -->
         <div id="homePage" class="panel">
             <h1>Memory game!</h1>
-            <p style="font-size:clamp(1rem,4vw,1.2rem);margin-bottom:30px;opacity:.9;text-align:center;">
-                Multiplayer • 30 Pemain • 6 Menit
+            <p style="font-size:clamp(1.1rem,4vw,1.3rem);margin-bottom:35px;opacity:.9;text-align:center;">
+                Multiplayer Рђб 30 Pemain Рђб 6 Menit
             </p>
             <button id="adminBtn" class="btn btn-warning">ADMIN</button>
             <button id="playerBtn" class="btn btn-primary">PLAYER</button>
         </div>
 
-        <!-- ADMIN LOGIN -->
         <div id="adminLogin" class="panel hidden">
             <h1>Admin Login</h1>
             <div class="input-group"><input type="password" id="adminPassword" placeholder="Kode Rahasia"></div>
@@ -297,18 +336,16 @@
             <button id="backHome1" class="btn btn-secondary">Kembali</button>
         </div>
 
-        <!-- ADMIN PAGE -->
         <div id="adminPage" class="panel hidden">
             <h1>Admin Panel</h1>
             <div class="online-info">Online: <span id="onlineCount">0</span> | Live Leaderboard</div>
             <ul id="adminLeaderboard"></ul>
-            <button id="startGameBtn" class="btn btn-success" style="font-size:clamp(1.1rem,4.5vw,1.3rem);padding:22px;margin-top:20px;">
+            <button id="startGameBtn" class="btn btn-success" style="font-size:clamp(1.2rem,4.8vw,1.4rem);padding:25px;margin-top:25px;">
                 START GAME (6 Menit)
             </button>
             <button id="backHome2" class="btn btn-secondary">Keluar</button>
         </div>
 
-        <!-- PLAYER LOGIN -->
         <div id="playerLogin" class="panel hidden">
             <h1>Gabung Game</h1>
             <div class="input-group"><input type="text" id="playerName" placeholder="Nama Keren Anda" maxlength="12"></div>
@@ -316,7 +353,6 @@
             <button id="backHome3" class="btn btn-secondary">Kembali</button>
         </div>
 
-        <!-- WAITING ROOM -->
         <div id="waitingRoom" class="panel hidden">
             <h1>Menunggu</h1>
             <p id="waitingMessage">Admin sedang mempersiapkan permainan<span class="waiting-dots"></span></p>
@@ -324,7 +360,6 @@
             <button id="backHome4" class="btn btn-secondary">Keluar</button>
         </div>
 
-        <!-- PLAYER GAME -->
         <div id="gamePage" class="panel hidden">
             <h1>Memory Match</h1>
             <div id="score">Skor: 0</div>
@@ -335,7 +370,6 @@
             <div id="gameGrid"></div>
         </div>
 
-        <!-- RESULTS -->
         <div id="resultPage" class="panel hidden">
             <h1>Hasil Akhir</h1>
             <ul id="leaderboard"></ul>
@@ -345,7 +379,6 @@
         </div>
     </div>
 
-    <!-- FIREBASE -->
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 
